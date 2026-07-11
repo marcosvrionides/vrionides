@@ -5,7 +5,7 @@ const Title = () => {
 	return (
 		<main className="hero" role="main" aria-label="Welcome">
 			<div className="hero__inner">
-				<h1 className="hero__title">welcome to vrionides.com</h1>
+				<h1 className="hero__title">welcome to www.vrionides.com</h1>
 				<svg
 					className="connectors"
 					viewBox="0 0 100 120"
