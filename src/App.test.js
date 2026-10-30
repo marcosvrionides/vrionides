@@ -1,8 +1,17 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('renders the title and project links', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  expect(
+    screen.getByRole('heading', { name: /welcome to vrionides\.com/i })
+  ).toBeInTheDocument();
+  expect(screen.getByRole('link', { name: /leaderboards/i })).toHaveAttribute(
+    'href',
+    'https://leaderboards.vrionides.com'
+  );
+  expect(screen.getByRole('link', { name: /marcos/i })).toHaveAttribute(
+    'href',
+    'https://marcos.vrionides.com'
+  );
 });

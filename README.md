@@ -8,17 +8,13 @@ This is intentionally minimal: a hero title and a set of links out to other proj
 
 ## Adding a new project link
 
-Project links live in [`src/Title/Title.js`](src/Title/Title.js), inside the `<nav className="projects">` block. To add one, copy an existing `<a>` and point it at the new subdomain:
+Projects live in the `projects` array at the top of [`src/Title/Title.js`](src/Title/Title.js). Add an entry and it gets its own link and connector line:
 
-```jsx
-<a
-  className="project-link"
-  href="https://newproject.vrionides.com"
-  target="_blank"
-  rel="noopener noreferrer"
->
-  newproject.vrionides.com
-</a>
+```js
+const projects = [
+  { name: "leaderboards", url: "https://leaderboards.vrionides.com" },
+  { name: "newproject", url: "https://newproject.vrionides.com" },
+];
 ```
 
 Styling for the links and hero lives in [`src/Title/Title.css`](src/Title/Title.css).
