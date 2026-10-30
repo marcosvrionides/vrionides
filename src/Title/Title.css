@@ -1,5 +1,10 @@
+:root {
+	color-scheme: dark;
+}
+
 .hero {
-	height: 100vh;
+	min-height: 100vh;
+	min-height: 100svh;
 	width: 100%;
 	display: flex;
 	align-items: center;
@@ -12,15 +17,13 @@
 .hero__title {
 	font-family:
 		-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
-		Arial;
-	font-size: clamp(2.5rem, 8vw, 6rem);
+		Arial, sans-serif;
+	font-size: clamp(2.25rem, 8vw, 6rem);
 	font-weight: 800;
 	line-height: 1;
 	letter-spacing: -0.02em;
 	margin: 0;
 	padding: 0 1rem;
-	text-transform: none;
-	filter: drop-shadow(0 8px 24px rgba(2, 6, 23, 0.6));
 	animation: fadeInUp 700ms ease both;
 }
 
@@ -36,7 +39,6 @@
 }
 
 .projects {
-	margin-top: 0.6rem;
 	display: flex;
 	gap: 0.75rem;
 	justify-content: center;
@@ -44,23 +46,45 @@
 }
 
 .project-link {
-	display: inline-block;
-	padding: 0.65rem 1rem;
+	display: inline-flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-height: 44px;
+	padding: 0.8rem 1.25rem;
 	background: rgba(255, 255, 255, 0.08);
 	color: #ffffff;
 	border-radius: 10px;
 	text-decoration: none;
-	font-weight: 700;
 	transition:
 		transform 140ms ease,
 		background 140ms ease;
-	box-shadow: 0 6px 18px rgba(2, 6, 23, 0.45);
 }
 
-.project-link:hover,
-.project-link:focus {
-	transform: translateY(-3px);
+.project-link__name {
+	font-weight: 700;
+}
+
+.project-link__url {
+	font-size: 0.8125rem;
+	color: rgba(255, 255, 255, 0.7);
+}
+
+.project-link:focus-visible {
 	background: rgba(255, 255, 255, 0.12);
+	outline: 2px solid #ffffff;
+	outline-offset: 3px;
+}
+
+@media (hover: hover) {
+	.project-link:hover {
+		background: rgba(255, 255, 255, 0.12);
+		transform: translateY(-3px);
+	}
+}
+
+.project-link:focus-visible {
+	transform: translateY(-3px);
 }
 
 .project-link:active {
@@ -72,32 +96,24 @@
 	flex-direction: column;
 	align-items: center;
 	gap: 0.5rem;
+	width: 100%;
+	max-width: 40rem;
 }
 
 .connectors {
-	width: 100%;
-	height: 120px;
 	display: block;
-	margin: 0.6rem auto 0.6rem;
 	overflow: visible;
 }
 
 .connector {
 	fill: none;
-	stroke: rgba(255, 255, 255, 0.14);
-	stroke-width: 0.25;
+	stroke: rgba(255, 255, 255, 0.22);
+	stroke-width: 1;
 	stroke-linecap: round;
-	stroke-linejoin: round;
-	transition:
-		stroke 220ms ease,
-		opacity 220ms ease;
-	opacity: 0.95;
-}
-
-/* subtle draw animation */
-.connector {
-	stroke-dasharray: 220;
-	stroke-dashoffset: 220;
+	vector-effect: non-scaling-stroke;
+	transition: stroke 220ms ease;
+	stroke-dasharray: 1;
+	stroke-dashoffset: 1;
 	animation: draw 2s ease forwards 200ms;
 }
 
@@ -107,8 +123,27 @@
 	}
 }
 
-/* hover highlight when focusing the projects area */
-.projects:focus-within ~ .connectors .connector,
-.projects:hover ~ .connectors .connector {
-	stroke: rgba(255, 255, 255, 0.22);
+.hero__inner:has(.project-link:hover, .project-link:focus-visible) .connector {
+	stroke: rgba(255, 255, 255, 0.4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.hero__title,
+	.connector {
+		animation: none;
+	}
+
+	.connector {
+		stroke-dashoffset: 0;
+	}
+
+	.project-link {
+		transition: background 140ms ease;
+	}
+
+	.project-link:hover,
+	.project-link:focus-visible,
+	.project-link:active {
+		transform: none;
+	}
 }
